@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="Pro.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Daily Routine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,7 +44,6 @@
             max-width: 500px;
         }
 
-        /* 3D Title */
         .title-3d {
             text-align: center;
             margin-bottom: 30px;
@@ -67,7 +67,6 @@
             font-size: 2.5rem;
         }
 
-        /* 3D Card Effect - CENTERED */
         .card-3d {
             width: 100%;
             margin: 0 auto 25px;
@@ -101,12 +100,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.1), 
-                transparent
-            );
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transform: rotate(45deg);
             transition: 0.5s;
             z-index: 1;
@@ -129,7 +123,33 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        /* Bank Item Styling with Edit Button */
+        /* step indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50px;
+            padding: 8px 5px;
+        }
+        .step {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1rem;
+            border: none;
+            width: 45%;
+        }
+        .step.active {
+            background: var(--primary);
+            box-shadow: 0 4px 10px rgba(52,152,219,0.5);
+        }
+
+        /* bank/task items */
         .bank-item {
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
@@ -138,9 +158,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 
-                0 3px 10px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -160,9 +178,11 @@
         .bank-actions {
             display: flex;
             gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
-        /* Button Styling */
         .btn-3d {
             padding: 14px 20px;
             border: none;
@@ -178,9 +198,7 @@
             transition: all 0.2s ease;
             transform-style: preserve-3d;
             position: relative;
-            box-shadow: 
-                0 5px 0 rgba(0, 0, 0, 0.2),
-                0 8px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.2);
             outline: none;
         }
 
@@ -189,27 +207,11 @@
             box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .btn-blue {
-            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
-            color: white;
-        }
+        .btn-blue { background: linear-gradient(to bottom, var(--primary), var(--primary-dark)); color: white; }
+        .btn-green { background: linear-gradient(to bottom, var(--success), #27ae60); color: white; }
+        .btn-orange { background: linear-gradient(to bottom, var(--warning), #e67e22); color: white; }
+        .btn-red { background: linear-gradient(to bottom, var(--danger), #c0392b); color: white; }
 
-        .btn-green {
-            background: linear-gradient(to bottom, var(--success), #27ae60);
-            color: white;
-        }
-
-        .btn-orange {
-            background: linear-gradient(to bottom, var(--warning), #e67e22);
-            color: white;
-        }
-
-        .btn-red {
-            background: linear-gradient(to bottom, var(--danger), #c0392b);
-            color: white;
-        }
-
-        /* Input styling */
         .input-3d {
             width: 100%;
             padding: 15px;
@@ -219,22 +221,16 @@
             text-align: center;
             margin: 10px 0;
             background: rgba(255, 255, 255, 0.9);
-            box-shadow: 
-                inset 0 2px 5px rgba(0, 0, 0, 0.1),
-                0 3px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1), 0 3px 5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             color: #333;
         }
-
         .input-3d:focus {
             outline: none;
             background: white;
-            box-shadow: 
-                inset 0 2px 5px rgba(0, 0, 0, 0.1),
-                0 0 0 3px rgba(52, 152, 219, 0.3);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 0 0 3px rgba(52,152,219,0.3);
         }
 
-        /* Total display */
         .total-3d {
             background: linear-gradient(135deg, #00bcd4, #0097a7);
             padding: 18px;
@@ -244,13 +240,10 @@
             font-weight: bold;
             color: white;
             text-align: center;
-            box-shadow: 
-                0 5px 15px rgba(0, 188, 212, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0,188,212,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            text-shadow: 0 2px 3px rgba(0,0,0,0.3);
         }
 
-        /* Action buttons */
         .action-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -258,7 +251,6 @@
             margin-top: 20px;
         }
 
-        /* Back button */
         .back-btn {
             display: block;
             margin: 25px auto 0;
@@ -273,44 +265,31 @@
             width: 150px;
             text-align: center;
         }
-
         .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
         }
 
-        /* Hidden class */
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
-        /* Animation for page transitions */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
 
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
+        .task-cat-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-weight: bold;
         }
 
         @media (max-width: 480px) {
-            .title-3d {
-                font-size: 2rem;
-            }
-            
-            .card-3d {
-                padding: 20px 15px;
-            }
-            
-            .btn-3d {
-                padding: 12px 16px;
-                font-size: 0.9rem;
-            }
-            
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
+            .title-3d { font-size: 2rem; }
+            .card-3d { padding: 20px 15px; }
+            .btn-3d { padding: 12px 16px; font-size: 0.9rem; }
+            .action-buttons { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -329,70 +308,101 @@
             </div>
         </div>
 
-        <!-- CASH COUNTER -->
+        <!-- CASH COUNTER (Step1 = view entries, Step2 = add entry) -->
         <div class="card-3d hidden" id="cash">
             <div class="card-content">
                 <h2><i class="fas fa-money-bill-wave"></i> Cash Counter</h2>
                 
-                <div id="boxes"></div>
-                
-                <div class="total-3d">
-                    Total: ₹ <span id="total">0</span>
+                <!-- step 1 & step 2 tabs -->
+                <div class="step-indicator">
+                  <button class="step" id="cashStep1Btn" onclick="switchCashStep(1)">Cash</button>
+                    <button class="step" id="cashStep2Btn" onclick="switchCashStep(2)">add</button>
                 </div>
-                
-                <div class="action-buttons">
-                    <button class="btn-3d btn-green" onclick="addBox()">
-                        <i class="fas fa-plus-circle"></i> Add Bank
-                    </button>
-                    <button class="btn-3d btn-orange" onclick="deleteBox()">
-                        <i class="fas fa-trash-alt"></i> Delete Bank
-                    </button>
-                    <button class="btn-3d btn-red" onclick="resetAll()">
-                        <i class="fas fa-redo"></i> Reset All
-                    </button>
+
+                <!-- Step 1: show all entries (view/edit) -->
+                <div id="cashStep1Panel">
+                    <div id="boxes"></div>
+                    <div class="total-3d">Total: ₹ <span id="total">0</span></div>
+                    <div class="action-buttons">
+                        <button class="btn-3d btn-orange" onclick="deleteBox()"><i class="fas fa-trash-alt"></i> Delete Bank</button>
+                        <button class="btn-3d btn-red" onclick="resetAll()"><i class="fas fa-redo"></i> Reset All</button>
+                    </div>
                 </div>
-                
-                <button class="back-btn" onclick="back()">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
+
+                <!-- Step 2: add new bank entry (simple form) -->
+                <div id="cashStep2Panel" class="hidden">
+                    <div style="text-align: center; padding: 15px 0;">
+                        <i class="fas fa-piggy-bank" style="font-size: 3rem; color: #ffd966;"></i>
+                        <h3 style="margin: 15px 0;">Add New Bank</h3>
+                        <input type="text" id="newBankName" class="input-3d" placeholder="e.g. Credit Union" autocomplete="off">
+                        <button class="btn-3d btn-green" onclick="addBoxFromStep2()" style="margin-top: 15px;">
+                            <i class="fas fa-save"></i> Save Bank
+                        </button>
+                        <p style="margin-top: 15px; font-size: 0.9rem; opacity:0.7;">Bank will appear with ₹0 balance</p>
+                    </div>
+                </div>
+
+                <button class="back-btn" onclick="back()"><i class="fas fa-arrow-left"></i> Back</button>
             </div>
         </div>
 
-        <!-- DAILY TASK (Same as before) -->
+        <!-- DAILY TASK (Step1 = entries list, Step2 = add task) -->
         <div class="card-3d hidden" id="task">
             <div class="card-content">
                 <h2><i class="fas fa-calendar-day"></i> Daily Task</h2>
-                
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <button class="btn-3d" style="background: #3498db; margin: 5px;" onclick="openTask('iti')">ITI</button>
-                    <button class="btn-3d" style="background: #2ecc71; margin: 5px;" onclick="openTask('home')">Home</button>
-                    <button class="btn-3d" style="background: #f39c12; margin: 5px;" onclick="openTask('pro')">Pro Dev</button>
+
+                <!-- category buttons (ITI / Home / Pro Dev) -->
+                <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+                    <button class="btn-3d task-cat-btn" style="width: auto; padding: 10px 18px; margin:0;" onclick="openTaskCategory('iti')">🏭 ITI</button>
+                    <button class="btn-3d task-cat-btn" style="width: auto; padding: 10px 18px; margin:0;" onclick="openTaskCategory('home')">🏠 Home</button>
+                    <button class="btn-3d task-cat-btn" style="width: auto; padding: 10px 18px; margin:0;" onclick="openTaskCategory('pro')">💼 Pro Dev</button>
                 </div>
-                
-                <div id="taskArea"></div>
-                
-                <button class="back-btn" onclick="back()">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
+
+                <!-- step tabs inside task -->
+                <div class="step-indicator">
+                    <button class="step" id="taskStep1Btn" onclick="switchTaskStep(1)">Task</button>
+                    <button class="step" id="taskStep2Btn" onclick="switchTaskStep(2)">add</button>
+                </div>
+
+                <!-- Step 1: show tasks of selected category -->
+                <div id="taskStep1Panel">
+                    <h3 id="currentCategoryTitle" style="margin:10px 0; color:#ffb570;">ITI Tasks</h3>
+                    <div id="taskList" style="min-height: 120px;"></div>
+                </div>
+
+                <!-- Step 2: add new task form -->
+                <div id="taskStep2Panel" class="hidden">
+                    <div style="padding: 10px;">
+                        <label style="font-weight: bold;">New task for <span id="taskCategoryLabel">ITI</span></label>
+                        <input id="taskInput" class="input-3d" placeholder="write task ...">
+                        <button class="btn-3d btn-green" onclick="addCurrentTask()"><i class="fas fa-plus"></i> Add Task</button>
+                    </div>
+                </div>
+
+                <button class="back-btn" onclick="back()"><i class="fas fa-arrow-left"></i> Back</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Page navigation
+        // ---------- GLOBAL ----------
         function show(id) {
             document.getElementById('mainMenu').classList.add('hidden');
             document.getElementById('cash').classList.add('hidden');
             document.getElementById('task').classList.add('hidden');
-            
             const page = document.getElementById(id);
             page.classList.remove('hidden');
             page.classList.add('fade-in');
-            
+
             if (id === 'cash') {
-                render();
+                // default step 1 for cash
+                switchCashStep(1);
+                renderCash();
             } else if (id === 'task') {
-                openTask('iti');
+                // default ITI, step1
+                currentTaskCategory = 'iti';
+                openTaskCategory('iti');
+                switchTaskStep(1);
             }
         }
 
@@ -403,32 +413,33 @@
             document.getElementById('mainMenu').classList.add('fade-in');
         }
 
-        // CASH COUNTER functionality
-        let data = JSON.parse(localStorage.getItem("bankData")) || [
+        // ---------- CASH COUNTER ----------
+        let cashData = JSON.parse(localStorage.getItem("bankData")) || [
             {name:"Bank Account", amount:0},
             {name:"UPI Wallet", amount:0},
             {name:"Cash", amount:0},
             {name:"Savings", amount:0}
         ];
 
-        function save() {
-            localStorage.setItem("bankData", JSON.stringify(data));
+        function saveCash() {
+            localStorage.setItem("bankData", JSON.stringify(cashData));
         }
 
-        function render() {
+        function renderCash() {
             let container = document.getElementById("boxes");
+            if (!container) return;
             container.innerHTML = "";
             let total = 0;
 
-            data.forEach((item, index) => {
+            cashData.forEach((item, index) => {
                 total += Number(item.amount);
                 container.innerHTML += `
                     <div class="bank-item">
                         <div class="bank-name">${item.name}</div>
                         <div class="bank-actions">
                             <input class="input-3d" type="number" value="${item.amount}" 
-                                   oninput="update(${index}, this.value)" 
-                                   placeholder="Amount" style="width: 120px; padding: 10px; margin: 0;">
+                                   oninput="updateCash(${index}, this.value)" 
+                                   placeholder="₹" style="width: 110px; padding: 10px; margin: 0;">
                             <button onclick="editBox(${index})" style="background: #3498db; color: white; border: none; border-radius: 8px; padding: 10px 15px; cursor: pointer;">
                                 <i class="fas fa-edit"></i>
                             </button>
@@ -437,134 +448,129 @@
             });
 
             document.getElementById("total").innerText = total;
-            
-            // Animation for total update
-            if (total > 0) {
-                const totalEl = document.querySelector('.total-3d');
-                totalEl.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    totalEl.style.transform = 'scale(1)';
-                }, 300);
-            }
-            
-            save();
+            saveCash();
         }
 
-     function update(i, val) {
-    data[i].amount = val;
+        function updateCash(i, val) {
+            cashData[i].amount = val ? Number(val) : 0;
+            let total = 0;
+            cashData.forEach(item => total += Number(item.amount));
+            document.getElementById("total").innerText = total;
+            saveCash();
+        }
 
-    let total = 0;
-    data.forEach(item => total += Number(item.amount));
-    document.getElementById("total").innerText = total;
-
-    save();
-}
-
-        // 1. यहाँ Bank Name ADD करने का Function है
-        function addBox() {
+        function addBox() {  // from step1 delete/reset section, but we also have step2
             let name = prompt("Enter New Bank Name:");
             if (!name || name.trim() === "") return;
-            data.push({name: name.trim(), amount: 0});
-            render();
+            cashData.push({name: name.trim(), amount: 0});
+            renderCash();
         }
 
-        // 2. यहाँ Bank Name DELETE करने का Function है
-        function deleteBox() {
-            if (data.length === 0) {
-                alert("No banks to delete!");
+        // dedicated step2 add
+        function addBoxFromStep2() {
+            let nameInput = document.getElementById("newBankName");
+            let name = nameInput.value.trim();
+            if (name === "") {
+                alert("Please enter a bank name");
                 return;
             }
-            
-            let bankList = "Select bank to delete:\n\n";
-            data.forEach((item, index) => {
-                bankList += `${index + 1}. ${item.name}\n`;
-            });
-            
-            let choice = prompt(bankList + "\nEnter bank number or name:");
-            if (!choice) return;
-            
-            // Check if input is a number
-            let index = parseInt(choice) - 1;
-            if (!isNaN(index) && index >= 0 && index < data.length) {
-                let bankName = data[index].name;
-                if (confirm(`Delete ${bankName}?`)) {
-                    data.splice(index, 1);
-                    render();
-                }
-            } else {
-                // If not a number, treat as name
-                data = data.filter(item => item.name.toLowerCase() !== choice.toLowerCase().trim());
-                render();
+            cashData.push({name: name, amount: 0});
+            nameInput.value = "";
+            renderCash();           // update step1 list
+            switchCashStep(1);      // go back to step1 to see new entry
+        }
+
+        function editBox(index) {
+            let newName = prompt("Edit Bank Name", cashData[index].name);
+            if (newName && newName.trim() !== "") {
+                cashData[index].name = newName.trim();
+                renderCash();
             }
         }
 
-        // 3. यहाँ Bank Name EDIT करने का नया Function है
-        function editBox(index) {
-            let newName = prompt("Edit Bank Name", data[index].name);
-            if (newName && newName.trim() !== "") {
-                data[index].name = newName.trim();
-                render();
+        function deleteBox() {
+            if (cashData.length === 0) { alert("No banks!"); return; }
+            let list = "Select bank to delete:\n";
+            cashData.forEach((item,i) => list += `${i+1}. ${item.name}\n`);
+            let choice = prompt(list + "\nEnter number or name:");
+            if (!choice) return;
+            let index = parseInt(choice) - 1;
+            if (!isNaN(index) && index >=0 && index < cashData.length) {
+                if (confirm(`Delete ${cashData[index].name}?`)) {
+                    cashData.splice(index,1);
+                    renderCash();
+                }
+            } else {
+                cashData = cashData.filter(item => item.name.toLowerCase() !== choice.toLowerCase().trim());
+                renderCash();
             }
         }
 
         function resetAll() {
-            if (confirm("Are you sure you want to reset all amounts to zero?")) {
-                data.forEach(item => item.amount = 0);
-                render();
+            if (confirm("Set all amounts to zero?")) {
+                cashData.forEach(item => item.amount = 0);
+                renderCash();
             }
         }
 
-        // Initialize cash counter
-        render();
+        // switch steps in cash
+        function switchCashStep(step) {
+            const step1 = document.getElementById('cashStep1Panel');
+            const step2 = document.getElementById('cashStep2Panel');
+            const btn1 = document.getElementById('cashStep1Btn');
+            const btn2 = document.getElementById('cashStep2Btn');
 
-        // DAILY TASK functionality
-        function openTask(type) {
-            taskArea.innerHTML = `
-                <h3 style="margin-bottom: 15px; color: #3498db; text-align: center;">${type.toUpperCase()} TASKS</h3>
-                <input class="input-3d" id="taskInput" placeholder="Enter a new task...">
-                <button class="btn-3d" style="background: #2ecc71; width: 100%; margin-top: 10px;" onclick="addTask('${type}')">
-                    <i class="fas fa-plus"></i> Add Task
-                </button>
-                <div id="taskList" style="margin-top: 20px;"></div>
-            `;
-            
-            loadTask(type);
-            
-            setTimeout(() => {
-                document.getElementById('taskInput').focus();
-            }, 300);
+            if (step === 1) {
+                step1.classList.remove('hidden');
+                step2.classList.add('hidden');
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+                renderCash();  // refresh
+            } else {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                btn1.classList.remove('active');
+              btn2.classList.add('active');
+                // optional focus
+                document.getElementById('newBankName')?.focus();
+            }
         }
 
-        function addTask(type) {
-            let input = document.getElementById("taskInput");
-            if (input.value.trim() === "") return;
-            
-            let tasks = JSON.parse(localStorage.getItem(type)) || [];
-            tasks.push(input.value.trim());
-            localStorage.setItem(type, JSON.stringify(tasks));
-            input.value = "";
-            loadTask(type);
+        // ---------- DAILY TASK (multi category) ----------
+        let currentTaskCategory = 'iti';  // 'iti', 'home', 'pro'
+
+        function openTaskCategory(cat) {
+            currentTaskCategory = cat;
+            const catTitle = document.getElementById('currentCategoryTitle');
+            if (catTitle) {
+                let displayName = cat === 'iti' ? 'ITI' : (cat === 'home' ? 'HOME' : 'PRO DEV');
+                catTitle.innerText = displayName + ' Tasks';
+            }
+            // update hidden label for step2
+            const spanCat = document.getElementById('taskCategoryLabel');
+            if (spanCat) spanCat.innerText = cat.toUpperCase();
+
+            loadTasksForCurrent();
         }
 
-        function loadTask(type) {
-            let tasks = JSON.parse(localStorage.getItem(type)) || [];
-            let list = document.getElementById("taskList");
-            list.innerHTML = "";
-            
+        function loadTasksForCurrent() {
+            let tasks = JSON.parse(localStorage.getItem(currentTaskCategory)) || [];
+            let listDiv = document.getElementById("taskList");
+            if (!listDiv) return;
+            listDiv.innerHTML = "";
             if (tasks.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: rgba(255,255,255,0.7); padding: 20px;">No tasks yet. Add one above!</p>`;
+                listDiv.innerHTML = `<p style="text-align:center; padding:20px; opacity:0.7;">✨ No tasks yet. Add in step2 ✨</p>`;
                 return;
             }
-            
-            tasks.forEach((t, i) => {
-                list.innerHTML += `
+            tasks.forEach((task, idx) => {
+                listDiv.innerHTML += `
                     <div class="bank-item">
-                        <span>${t}</span>
+                        <span>${task}</span>
                         <div>
-                            <button onclick="editTask('${type}', ${i})" style="background: #3498db; color: white; border: none; border-radius: 8px; padding: 8px 12px; margin-left: 5px; cursor: pointer;">
+                            <button onclick="editTask('${currentTaskCategory}', ${idx})" style="background:#3498db; color:white; border:none; border-radius:8px; padding:8px 12px; margin-left:5px;">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button onclick="deleteTask('${type}', ${i})" style="background: #e74c3c; color: white; border: none; border-radius: 8px; padding: 8px 12px; margin-left: 5px; cursor: pointer;">
+                            <button onclick="deleteTask('${currentTaskCategory}', ${idx})" style="background:#e74c3c; color:white; border:none; border-radius:8px; padding:8px 12px; margin-left:5px;">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -572,37 +578,83 @@
             });
         }
 
-        function editTask(type, i) {
-            let tasks = JSON.parse(localStorage.getItem(type));
-            let newTask = prompt("Edit Task", tasks[i]);
-            if (newTask && newTask.trim() !== "") {
-                tasks[i] = newTask.trim();
-                localStorage.setItem(type, JSON.stringify(tasks));
-                loadTask(type);
+        function addCurrentTask() {
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+            if (task === "") return;
+
+            let tasks = JSON.parse(localStorage.getItem(currentTaskCategory)) || [];
+            tasks.push(task);
+            localStorage.setItem(currentTaskCategory, JSON.stringify(tasks));
+            input.value = "";
+
+            // refresh step1 list
+            loadTasksForCurrent();
+            // switch to step1 automatically
+            switchTaskStep(1);
+        }
+
+        function editTask(cat, index) {
+            let tasks = JSON.parse(localStorage.getItem(cat));
+            let newVal = prompt("Edit task", tasks[index]);
+            if (newVal && newVal.trim() !== "") {
+                tasks[index] = newVal.trim();
+                localStorage.setItem(cat, JSON.stringify(tasks));
+                if (currentTaskCategory === cat) loadTasksForCurrent();
             }
         }
 
-        function deleteTask(type, i) {
+        function deleteTask(cat, index) {
             if (!confirm("Delete this task?")) return;
-            
-            let tasks = JSON.parse(localStorage.getItem(type));
-            tasks.splice(i, 1);
-            localStorage.setItem(type, JSON.stringify(tasks));
-            loadTask(type);
+            let tasks = JSON.parse(localStorage.getItem(cat));
+            tasks.splice(index, 1);
+            localStorage.setItem(cat, JSON.stringify(tasks));
+            if (currentTaskCategory === cat) loadTasksForCurrent();
         }
 
-      
-             // Mobile touch effects
+        // switch steps inside task
+        function switchTaskStep(step) {
+            const step1panel = document.getElementById('taskStep1Panel');
+            const step2panel = document.getElementById('taskStep2Panel');
+            const btn1 = document.getElementById('taskStep1Btn');
+            const btn2 = document.getElementById('taskStep2Btn');
+
+            if (step === 1) {
+                step1panel.classList.remove('hidden');
+                step2panel.classList.add('hidden');
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+                loadTasksForCurrent();  // refresh list
+            } else {
+                step1panel.classList.add('hidden');
+                step2panel.classList.remove('hidden');
+                btn1.classList.remove('active');
+                btn2.classList.add('active');
+                document.getElementById('taskInput')?.focus();
+                // update category label inside step2
+                document.getElementById('taskCategoryLabel').innerText = currentTaskCategory.toUpperCase();
+            }
+        }
+
+        // initialization for task (so that step1 is active)
+        function openTaskCategoryAndStep1(cat) {
+            openTaskCategory(cat);
+            switchTaskStep(1);
+        }
+
+        // cash render on start
+        renderCash();
+
+        // touch / active effect
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.btn-3d, .back-btn').forEach(button => {
-                button.addEventListener('touchstart', function() {
-                    this.style.transform = 'translateY(5px)';
-                });
-                
-                button.addEventListener('touchend', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
+            // set default steps active
+            document.getElementById('cashStep1Btn')?.classList.add('active');
+            document.getElementById('taskStep1Btn')?.classList.add('active');
+            // ensure task category default
+            currentTaskCategory = 'iti';
+            if (!localStorage.getItem('iti')) localStorage.setItem('iti', JSON.stringify([]));
+            if (!localStorage.getItem('home')) localStorage.setItem('home', JSON.stringify([]));
+            if (!localStorage.getItem('pro')) localStorage.setItem('pro', JSON.stringify([]));
         });
     </script>
 </body>
